@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>875926677687-9pqgko9u8n511f7ifi36a4gh2ifqr8iu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.875926677687-9pqgko9u8n511f7ifi36a4gh2ifqr8iu</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDq4s3I7uZHdqYMgVmDMKKtLGGaclx4VxM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>875926677687</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>br.com.flashcard</string>
+	<key>PROJECT_ID</key>
+	<string>flashcards-cacee</string>
+	<key>STORAGE_BUCKET</key>
+	<string>flashcards-cacee.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:875926677687:ios:1de9b58e267a6b78</string>
+	<key>DATABASE_URL</key>
+	<string>https://flashcards-cacee.firebaseio.com</string>
+</dict>
+</plist>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "875926677687",
+    "firebase_url": "https://flashcards-cacee.firebaseio.com",
+    "project_id": "flashcards-cacee",
+    "storage_bucket": "flashcards-cacee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875926677687:android:1de9b58e267a6b78",
+        "android_client_info": {
+          "package_name": "br.com.flashcard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "875926677687-4umllut19l517htdru3i185jhe9rjmfa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAau6fq_gztHK4DZY5Nya3t2qEIDgsf1wU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "875926677687-4umllut19l517htdru3i185jhe9rjmfa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "875926677687-9pqgko9u8n511f7ifi36a4gh2ifqr8iu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.flashcard"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

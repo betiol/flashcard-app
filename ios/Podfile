@@ -1,0 +1,32 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+platform :ios, '9.0'
+
+target 'Flashcard' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # Pods for Flashcard
+
+  pod 'Firebase/Core', '~> 5.20.2'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
+
+  target 'FlashcardTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'Flashcard-tvOS' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for Flashcard-tvOS
+
+  target 'Flashcard-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
