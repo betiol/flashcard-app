@@ -14,7 +14,7 @@ yarn
 ## Usage
 
 ```sh
-npm run start
+react-native run-<platform>
 ```
 
 ## Run tests
