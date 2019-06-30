@@ -4,7 +4,7 @@ import { ROUTENAMES } from './RouteNames';
 import UserStorage from '../shared/UserStorage';
 import Colors from '../shared/Colors';
 import Auth from '../scenes/Auth';
-import Decks from '../scenes/Decks';
+import DeckContainer from '../context/containers/DeckContainer';
 import Feather from 'react-native-vector-icons/Feather';
 
 const LoggedOutRoutes = createAppContainer(
@@ -26,7 +26,7 @@ const LoggedOutRoutes = createAppContainer(
 const LoggedInRoutes = createAppContainer(
 	createSwitchNavigator(
 		{
-			[ROUTENAMES.DECKS]: { screen: Decks }
+			[ROUTENAMES.DECKS]: { screen: DeckContainer }
 		},
 		{
 			initialRouteName: 'Decks'

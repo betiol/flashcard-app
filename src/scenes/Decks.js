@@ -2,34 +2,15 @@
  * @flow
  */
 
-import React, { useState } from 'react';
-import {
-	View,
-	Platform,
-	Text,
-	SafeAreaView,
-	Animated,
-	FlatList,
-	StatusBar,
-	StyleSheet,
-	ScrollView
-} from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, Platform, Text, SafeAreaView, Animated, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { iOSUIKit, material, human } from 'react-native-typography';
 import Feather from 'react-native-vector-icons/Feather';
 import styled from 'styled-components';
 import Colors from '../shared/Colors';
+import { DecksContext } from '../context/decks';
 
-const decks = [
-	{ id: 1, name: 'Default', cards: 96, description: 'Cards to study english' },
-	{ id: 2, name: 'MVS', cards: 100, description: 'Cards to study english' },
-	{ id: 3, name: 'Phrasal Verbs', cards: 33, description: 'Cards to study english' },
-	{ id: 4, name: 'Default', cards: 96, description: 'Cards to study english' },
-	{ id: 5, name: 'MVS', cards: 100, description: 'Cards to study english' },
-	{ id: 6, name: 'Phrasal Verbs', cards: 33, description: 'Cards to study english' },
-	{ id: 7, name: 'Default', cards: 96, description: 'Cards to study english' },
-	{ id: 8, name: 'MVS', cards: 100, description: 'Cards to study english' },
-	{ id: 9, name: 'Phrasal Verbs', cards: 3, description: 'Cards to study english' }
-];
+const { height } = Dimensions.get('window');
 
 function _renderDeck({ name, description, cards }, i) {
 	return (
@@ -47,7 +28,14 @@ function _renderDeck({ name, description, cards }, i) {
 }
 
 export default function Decks() {
+	const { decks } = useContext(DecksContext);
+	const [ screenHeight, setScreenHeight ] = useState(0);
 	const [ scrollOffset, setScrollOffset ] = useState(new Animated.Value(0));
+	const scrollEnabled = screenHeight > height;
+	function _onContentSizeChange(contentWidth, contentHeight) {
+		setScreenHeight(contentHeight);
+	}
+
 	return (
 		<KeyboardWrapper>
 			<SafeAreaView />
@@ -69,13 +57,8 @@ export default function Decks() {
 							styles.text,
 							{
 								fontSize: scrollOffset.interpolate({
-									inputRange: [ 20, 40 ],
+									inputRange: [ 20, 50 ],
 									outputRange: [ 34, 20 ],
-									extrapolate: 'clamp'
-								}),
-								paddingBottom: scrollOffset.interpolate({
-									inputRange: [ 20, 40 ],
-									outputRange: [ 0, 20 ],
 									extrapolate: 'clamp'
 								})
 							}
@@ -84,16 +67,13 @@ export default function Decks() {
 						Decks
 					</Animated.Text>
 					<Image
-						style={[
-							styles.text,
-							{
-								width: scrollOffset.interpolate({
-									inputRange: [ 20, 40 ],
-									outputRange: [ 34, 20 ],
-									extrapolate: 'clamp'
-								})
-							}
-						]}
+						style={{
+							width: scrollOffset.interpolate({
+								inputRange: [ 20, 40 ],
+								outputRange: [ 34, 20 ],
+								extrapolate: 'clamp'
+							})
+						}}
 						source={{ uri: 'https://avatars1.githubusercontent.com/u/11700003?s=460&v=4' }}
 					/>
 				</HeaderChild>
@@ -101,6 +81,8 @@ export default function Decks() {
 			</Animated.View>
 			<ScrollView
 				scrollEventThrottle={16}
+				scrollEnabled={scrollEnabled}
+				onContentSizeChange={_onContentSizeChange}
 				onScroll={Animated.event([
 					{
 						nativeEvent: {
@@ -154,7 +136,7 @@ const Item = styled.TouchableOpacity`
 const IconWrapper = styled.View`
 	flex: 1;
 	flex-direction: row;
-	justify-content: center;
+	justify-content: flex-end;
 	align-items: center;
 `;
 

@@ -68,7 +68,7 @@ const Container = styled.View`
 	justify-content: center;
 	align-content: center;
 	padding: 10px;
-	background-color: ${Colors.greyLight};
+	background-color: ${Colors.lightGrey};
 `;
 
 const CoinsImage = styled.Image`
