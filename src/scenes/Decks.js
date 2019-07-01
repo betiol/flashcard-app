@@ -6,22 +6,35 @@ import React, { useState, useContext } from 'react';
 import { View, Platform, Text, SafeAreaView, Animated, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { iOSUIKit, material, human } from 'react-native-typography';
 import Feather from 'react-native-vector-icons/Feather';
+import { useNavigation } from 'react-navigation-hooks';
 import styled from 'styled-components';
+import { Transition } from 'react-navigation-fluid-transitions';
 import Colors from '../shared/Colors';
-import { DecksContext } from '../context/decks';
+import { DecksContext, useDecks } from '../context/decks';
+import { ROUTENAMES } from '../routes/RouteNames';
 
 const { height } = Dimensions.get('window');
 
-function _renderDeck({ name, description, cards }, i) {
+function _renderDeck(decks) {
+	const { navigate } = useNavigation();
+	const [ decksState, decksActions ] = useDecks();
+
+	async function _navigateAndSetDeck(deck) {
+		await decksActions.setDeck(deck);
+		await navigate(ROUTENAMES.DECKSDETAILS);
+	}
+
 	return (
-		<Item style={styles.item} key={i}>
+		<Item style={styles.item} onPress={() => _navigateAndSetDeck(decks)}>
 			<View flex={2}>
-				<Text style={human.headline}>{name}</Text>
-				<Text style={material.caption}>{description}</Text>
+				<Transition shared={'title'}>
+					<Text style={human.headline}>{decks.name}</Text>
+				</Transition>
+				<Text style={material.caption}>{decks.description}</Text>
 			</View>
 			<IconWrapper>
 				<Feather color={Colors.lightGrey} name={'clipboard'} size={30} />
-				<Text style={material.body2}>{cards}</Text>
+				<Text style={material.body2}>{decks.cards}</Text>
 			</IconWrapper>
 		</Item>
 	);
@@ -32,9 +45,6 @@ export default function Decks() {
 	const [ screenHeight, setScreenHeight ] = useState(0);
 	const [ scrollOffset, setScrollOffset ] = useState(new Animated.Value(0));
 	const scrollEnabled = screenHeight > height;
-	function _onContentSizeChange(contentWidth, contentHeight) {
-		setScreenHeight(contentHeight);
-	}
 
 	return (
 		<KeyboardWrapper>
@@ -82,7 +92,7 @@ export default function Decks() {
 			<ScrollView
 				scrollEventThrottle={16}
 				scrollEnabled={scrollEnabled}
-				onContentSizeChange={_onContentSizeChange}
+				onContentSizeChange={(contentWidth, contentHeight) => setScreenHeight(contentHeight)}
 				onScroll={Animated.event([
 					{
 						nativeEvent: {

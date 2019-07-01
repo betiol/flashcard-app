@@ -12,9 +12,7 @@ function DeckContainer() {
 	}, []);
 
 	return (
-		<DecksContext.Provider value={decksState}>
-			{decksState.loading ? <Loading loading={decksState.loading} /> : <Decks />}
-		</DecksContext.Provider>
+		<DecksContext.Provider value={decksState}>{decksState.loading ? <Loading /> : <Decks />}</DecksContext.Provider>
 	);
 }
 

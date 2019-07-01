@@ -1,5 +1,5 @@
 import { createContext, useReducer } from 'react';
-import { FETCH_DECKS, FETCH_DECKS_FAILURE, FETCH_DECKS_SUCCESS } from './common/constants';
+import { FETCH_DECKS, FETCH_DECKS_FAILURE, FETCH_DECKS_SUCCESS, SET_DECKS } from './common/constants';
 import { getDecks } from '../services';
 import UserStorage from '../shared/UserStorage';
 
@@ -16,7 +16,8 @@ export const DecksContext = createContext({});
 const INITIAL_STATE = {
 	decks: [],
 	loading: false,
-	error: null
+	error: null,
+	deck: {}
 };
 
 /**
@@ -27,6 +28,8 @@ function decksReducer(state = INITIAL_STATE, action) {
 	switch (action.type) {
 		case FETCH_DECKS:
 			return { ...state, loading: true };
+		case SET_DECKS:
+			return { ...state, deck: action.deck };
 		case FETCH_DECKS_SUCCESS:
 			return { ...state, loading: false, decks: action.decks };
 		case FETCH_DECKS_FAILURE:
@@ -57,5 +60,9 @@ export function useDecks() {
 		}
 	}
 
-	return [ state, { fetchDecks } ];
+	async function setDeck(deck) {
+		dispatch({ type: SET_DECKS, deck });
+	}
+
+	return [ state, { fetchDecks, setDeck } ];
 }

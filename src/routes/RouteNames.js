@@ -1,4 +1,5 @@
 export const ROUTENAMES = {
 	AUTH: 'Auth',
-	DECKS: 'Decks'
+	DECKS: 'Decks',
+	DECKSDETAILS: 'DecksDetails'
 };

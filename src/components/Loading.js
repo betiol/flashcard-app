@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { ActivityIndicator } from 'react-native';
 import { node, bool } from 'prop-types';
 
-export function Loading({ children, loading }) {
-	if (!loading) return null;
+export function Loading({ children }) {
 	return (
 		<Container>
 			<ActivityIndicator size={'large'} />
@@ -14,8 +13,7 @@ export function Loading({ children, loading }) {
 }
 
 Loading.propTypes = {
-	children: node.isRequired,
-	loading: bool.isRequired
+	children: node.isRequired
 };
 
 const Container = styled.View`
